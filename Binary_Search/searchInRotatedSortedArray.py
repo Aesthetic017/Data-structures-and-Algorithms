@@ -7,8 +7,8 @@ Output: 4
 """
 def search_rotated(arr, target):
     left = 0                     # Left pointer at start of array
-    right = len(arr) - 1         # Right pointer at end of array
-
+    right = len(arr) - 1         # Right pointer at end of array, We use len(arr) - 1 because Python arrays are 0-indexed, so the last element’s index is one less than the length.
+    
     # Run binary search while valid range exists
     while left <= right:
         mid = (left + right) // 2   # Find middle index
