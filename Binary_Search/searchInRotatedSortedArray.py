@@ -5,37 +5,43 @@ Example:
 Input: nums = [4,5,6,7,0,1,2], target = 0
 Output: 4
 """
+def search_rotated(arr, target):
+    left = 0                     # Left pointer at start of array
+    right = len(arr) - 1         # Right pointer at end of array
 
-def search_rotated(arr,target):
-    left = 0
-    right = len(arr)-1
-    
-    while left<=right:
-        mid = (left+right)//2
-        
+    # Run binary search while valid range exists
+    while left <= right:
+        mid = (left + right) // 2   # Find middle index
+
+        # If middle value matches target, return index
         if arr[mid] == target:
             return mid
-        
-        
-        if arr[left]<=arr[mid]:
-            if arr[left]<=target<arr[mid]:
-                right = mid-1
-            else: 
-                left = mid +1
-                
-        else:
-            if arr[mid]< target <=arr[right]:
-                left = mid+1
+
+        # Check if LEFT half is sorted
+        if arr[left] <= arr[mid]:
+
+            # If target lies inside sorted left half
+            if arr[left] <= target < arr[mid]:
+                right = mid - 1      # Move search to left side
             else:
-                right = mid-1    
-    
+                left = mid + 1       # Search in right half instead
+        
+        # Otherwise RIGHT half must be sorted
+        else:
+            # If target lies inside sorted right half
+            if arr[mid] < target <= arr[right]:
+                left = mid + 1       # Move search to right side
+            else:
+                right = mid - 1      # Search in left half instead
+
+    # If target is not found, return -1
     return -1
 
+
+# Driver code to test function
 if __name__ == '__main__':
-    arr=[4,5,6,7,0,1,2,3]
-    target = 0
+    arr = [4, 5, 6, 7, 0, 1, 2, 3]   # Rotated sorted array
+    target = 0                      # Value to search
     
-    result = search_rotated(arr,target)
-    
-    print (result)                 
-            
+    result = search_rotated(arr, target)   # Call function
+    print(result)                    # Print index of target
