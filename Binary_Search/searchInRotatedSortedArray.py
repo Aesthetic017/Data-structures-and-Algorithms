@@ -49,3 +49,40 @@ if __name__ == '__main__':
 
 
 # time complexity : O(logn n) and Space Complexity : O(1)
+
+"""
+left = 0 (value 4), right = 7 (value 3)
+mid = (0 + 7) // 2 = 3 (value 7)
+
+arr[mid] == target? → 7 == 0? NO
+
+arr[left] <= arr[mid]?  4 <= 7? YES
+So LEFT half [4,5,6,7] is sorted
+
+Is target in sorted left half?
+arr[left] <= target < arr[mid]? → 4 <= 0 < 7? NO
+(0 is not >= 4, so target is NOT in left half)
+
+Search RIGHT half → left = mid + 1 = 4
+now, 
+left = 4 (value 0), right = 7 (value 3)
+mid = (4 + 7) // 2 = 5 (value 1)
+
+arr[mid] == target? → 1 == 0? NO
+
+arr[left] <= arr[mid]? → 0 <= 1? YES
+So LEFT half [0,1] is sorted
+
+Is target in sorted left half?
+arr[left] <= target < arr[mid]? → 0 <= 0 < 1? YES
+(0 >= 0 AND 0 < 1, so target IS in left half)
+
+Search LEFT half → right = mid - 1 = 4
+now , 
+left = 4 (value 0), right = 4 (value 0)
+mid = (4 + 4) // 2 = 4 (value 0)
+
+arr[mid] == target? → 0 == 0? YES ✓
+
+return 4
+"""
